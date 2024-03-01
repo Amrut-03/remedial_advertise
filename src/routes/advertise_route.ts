@@ -4,10 +4,11 @@ import { createAdvertiseController, deleteAdvertiseController, getAdvertiseContr
 
 const advertiseRouter = Router();
 
+advertiseRouter.get("/", getAllAdvertiseIdsController);
 advertiseRouter.get("/:advertiseId", getAdvertiseController);
 advertiseRouter.post("/",createAdvertiseController);
 advertiseRouter.delete("/advertiseId",deleteAdvertiseController);
 advertiseRouter.put("/",updateAdvertiseController);
-advertiseRouter.get("/", getAllAdvertiseIdsController);
+
 
 export default advertiseRouter;

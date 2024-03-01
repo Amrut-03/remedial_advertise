@@ -16,9 +16,14 @@ exports.updateAdvertiseRepo = exports.creatAdvertiseRepo = exports.deleteAdverti
 const advertise_model_1 = __importDefault(require("../database/models/advertise_model"));
 const getAllAdvertiseIdsRepo = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allAdvertises = yield advertise_model_1.default.find({}, 'aduid');
-        const advertiseIds = allAdvertises.map((advertise) => advertise.aduid);
-        return advertiseIds;
+        const allAdvertises = yield advertise_model_1.default.find();
+        // const advertiseIds = allAdvertises.map((advertise) => advertise.aduid);
+        if (allAdvertises) {
+            return allAdvertises;
+        }
+        else {
+            return null;
+        }
     }
     catch (error) {
         console.log(error);
