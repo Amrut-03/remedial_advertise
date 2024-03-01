@@ -12,8 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateAdvertiseRepo = exports.creatAdvertiseRepo = exports.deleteAdvertiseRepo = exports.getAdvertiseRepo = void 0;
+exports.updateAdvertiseRepo = exports.creatAdvertiseRepo = exports.deleteAdvertiseRepo = exports.getAdvertiseRepo = exports.getAllAdvertiseIdsRepo = void 0;
 const advertise_model_1 = __importDefault(require("../database/models/advertise_model"));
+const getAllAdvertiseIdsRepo = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const allAdvertises = yield advertise_model_1.default.find({}, 'aduid');
+        const advertiseIds = allAdvertises.map((advertise) => advertise.aduid);
+        return advertiseIds;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+});
+exports.getAllAdvertiseIdsRepo = getAllAdvertiseIdsRepo;
 const getAdvertiseRepo = (advertiseId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const advertise = yield advertise_model_1.default.findOne({ aduid: advertiseId });

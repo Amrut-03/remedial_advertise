@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteAdvertiseController = exports.updateAdvertiseController = exports.createAdvertiseController = exports.getAdvertiseController = void 0;
+exports.getAllAdvertiseIdsController = exports.deleteAdvertiseController = exports.updateAdvertiseController = exports.createAdvertiseController = exports.getAdvertiseController = void 0;
 const advertise_repo_1 = require("../repositories/advertise_repo");
 const getAdvertiseController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const advertiseId = req.params.advertiseId;
@@ -80,3 +80,19 @@ const deleteAdvertiseController = (req, res) => __awaiter(void 0, void 0, void 0
     }
 });
 exports.deleteAdvertiseController = deleteAdvertiseController;
+const getAllAdvertiseIdsController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const allAdvertise = yield (0, advertise_repo_1.getAllAdvertiseIdsRepo)();
+        if (allAdvertise) {
+            res.status(200).json({ data: allAdvertise });
+        }
+        else {
+            res.status(500).json({ error: "Error getting advertise IDs" });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "500 error" });
+    }
+});
+exports.getAllAdvertiseIdsController = getAllAdvertiseIdsController;

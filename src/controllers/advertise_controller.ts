@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { creatAdvertiseRepo,getAdvertiseRepo,deleteAdvertiseRepo,updateAdvertiseRepo } from "../repositories/advertise_repo";
+import { creatAdvertiseRepo,getAdvertiseRepo,deleteAdvertiseRepo,updateAdvertiseRepo, getAllAdvertiseIdsRepo } from "../repositories/advertise_repo";
 import { IAdverTiseInterface } from "../database/interfaces/advertise_interface";
 
 export const getAdvertiseController = async (req: Request, res: Response) => {
@@ -64,5 +64,19 @@ export const updateAdvertiseController = async (req: Request, res: Response) => 
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: error });
+    }
+  };
+
+  export const getAllAdvertiseIdsController = async (req: Request, res: Response) => {
+    try {
+      const allAdvertise = await getAllAdvertiseIdsRepo();
+      if (allAdvertise) {
+        res.status(200).json({ data: allAdvertise });
+      } else {
+        res.status(500).json({ error: "Error getting advertise IDs" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "500 error" });
     }
   };

@@ -7,4 +7,5 @@ advertiseRouter.get("/:advertiseId", advertise_controller_1.getAdvertiseControll
 advertiseRouter.post("/", advertise_controller_1.createAdvertiseController);
 advertiseRouter.delete("/advertiseId", advertise_controller_1.deleteAdvertiseController);
 advertiseRouter.put("/", advertise_controller_1.updateAdvertiseController);
+advertiseRouter.get("/", advertise_controller_1.getAllAdvertiseIdsController);
 exports.default = advertiseRouter;

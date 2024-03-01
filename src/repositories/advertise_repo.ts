@@ -2,6 +2,18 @@ import mongoose from "mongoose";
 import AdvertiseModel from "../database/models/advertise_model";
 import { IAdverTiseInterface } from "../database/interfaces/advertise_interface";
 
+export const getAllAdvertiseIdsRepo = async (): Promise<String[] | null> => {
+  try {
+    const allAdvertises = await AdvertiseModel.find({}, 'aduid');
+    const advertiseIds = allAdvertises.map((advertise) => advertise.aduid);
+    return advertiseIds;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+
 export const getAdvertiseRepo = async (
   advertiseId: String
 ): Promise<IAdverTiseInterface | null> => {
